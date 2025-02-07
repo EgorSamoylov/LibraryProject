@@ -20,9 +20,20 @@
 import axios from '@/plugins/axios';
 
 export default {
+    props: {
+        initialBook: {
+            type: Object,
+            default: () => ({
+                title: '',
+                author: '',
+                publishedYear: null,
+                isBorrowed: false
+            })
+        }
+    },
     data() {
         return {
-          book: { id: 1, title: "Book title 1", author: "Book author 1", publishedYear: 1997, borrowed: true }
+          book: { ...this.initialBook }
         };
     },
     computed: {
