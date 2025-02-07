@@ -2,17 +2,20 @@
   <div id="app">
     <h1>Библиотека</h1>
     <BookList/>
+    <BookForm/>
   </div>
 </template>
 
 <script>
+import BookForm from './components/BookForm.vue';
 import BookList from './components/BookList.vue';
 
 
 export default {
   name: 'App',
   components: {
-    BookList
+    BookList,
+    BookForm
   }
 }
 </script>
