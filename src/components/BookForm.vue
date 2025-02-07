@@ -3,14 +3,14 @@
         <h2>{{ isEditMode ? 'Редактировать Книгу' : 'Добавить Книгу' }}</h2>
         <!-- @submit.prevent="handleSubmit" - предотвращает обновления страницы -->
         <form @submit.prevent="handleSubmit">
-            <div>
-                <input placeholder="название книги" id="title" v-model="book.title" required/>
-                <input placeholder="Автор" id="author" v-model="book.author" required/>
-                <input placeholder="год издания" id="publishedYear" v-model.number="book.publishedYear" required/>
+            <div class="inputs">
+                <input class="input" placeholder="название книги" id="title" v-model="book.title" required/>
+                <input class="input" placeholder="Автор" id="author" v-model="book.author" required/>
+                <input class="input" placeholder="год издания" id="publishedYear" v-model.number="book.publishedYear" required/>
             </div>
             <div>
-                <button type="submit">{{ isEditMode ? 'Сохранить' : 'Добавить' }}</button>
-                <button type="button" @click="cancel">Отмена</button>
+                <button class="btn" type="submit">{{ isEditMode ? 'Сохранить' : 'Добавить' }}</button>
+                <button class="btn" type="button" @click="cancel">Отмена</button>
             </div>
         </form>
     </div>
