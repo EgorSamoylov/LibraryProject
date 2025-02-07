@@ -18,7 +18,8 @@
             </p>
           </div>
           <div class="book-buttons">
-            Здесь будут кнопки
+            <button @click="deleteBook(book.id)">Удалить</button>
+            <button @click="toggleBorrowStatus(book)">{{ book.borrowed ? 'Вернуть' : 'Взять' }}</button>
           </div>
         </div>
       </div>
@@ -63,6 +64,23 @@ import axios from '@/plugins/axios';
           this.loading = false;
         }
       },
+      async deleteBook(id) {
+        try {
+          await axios.delete(`/books/${id}`);
+          this.fetchBooks(); // обновление списка после удаления
+        } catch (error) {
+          console.error('Ошибка при удалении книги:', error);
+        }
+      },
+      async toggleBorrowStatus(book) {
+        try {
+          const endpoint = book.borrowed ? 'return' : 'borrow';
+          await axios.put(`/books/${book.id}/${endpoint}`);
+          this.fetchBooks(); // обновление списка после изменения статуса книги
+        } catch (error) {
+          console.error('Ошибка при изменении статуса книги:', error);
+        }
+      }
     },
     mounted() {
       this.fetchBooks();
