@@ -2,7 +2,10 @@
   <div id="app">
     <h1>Библиотека</h1>
     <BookList/>
-    <BookForm/>
+    <BookForm
+      :initialBook="editingBook"
+      @book-submitted="bookSubmitted"
+      @cancel="cancelEdit"/>
   </div>
 </template>
 
@@ -16,6 +19,23 @@ export default {
   components: {
     BookList,
     BookForm
+  },
+  data() {
+    return {
+      editingBook: {} // пустая книга для создания или изменения через форму
+    };
+  },
+  methods: {
+    editBook(book) {
+      this.editingBook = { ...book }; //копируем book
+    },
+    bookSubmitted() {
+      this.editingBook = {};
+      this.$children[0].fetchBooks(); // обновляем список книг
+    },
+    cancelEdit() {
+      this.editingBook = {}; // очищаем editingBook
+    }
   }
 }
 </script>
