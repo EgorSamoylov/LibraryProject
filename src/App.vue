@@ -1,15 +1,19 @@
 <template>
   <div id="app">
+    <h1>Библиотека</h1>
+    <BookList/>
   </div>
 </template>
 
 <script>
+import BookList from './components/BookList.vue';
+
 
 export default {
   name: 'App',
-  // components: {
-    
-  // }
+  components: {
+    BookList
+  }
 }
 </script>
 
