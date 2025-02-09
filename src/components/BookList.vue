@@ -18,6 +18,7 @@
             </div>
           </div>
           <div class="book-buttons">
+            <button class="btn" @click="editBook(book)">Редактировать</button>
             <button class="btn" @click="deleteBook(book.id)">Удалить</button>
             <button class="btn" @click="toggleBorrowStatus(book)">{{ book.borrowed ? 'Вернуть' : 'Взять' }}</button>
           </div>
@@ -80,6 +81,9 @@ import axios from '@/plugins/axios';
         } catch (error) {
           console.error('Ошибка при изменении статуса книги:', error);
         }
+      },
+      editBook(book) {
+        this.$emit('edit-book', book)
       }
     },
     mounted() {

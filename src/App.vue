@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Библиотека</h1>
-    <BookList/>
+    <BookList @edit-book="editBook"/>
     <BookForm
       :initialBook="editingBook"
       @book-submitted="bookSubmitted"
