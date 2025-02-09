@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="book-form">
         <h2>{{ isEditMode ? 'Редактировать Книгу' : 'Добавить Книгу' }}</h2>
         <!-- @submit.prevent="handleSubmit" - предотвращает обновления страницы -->
         <form @submit.prevent="handleSubmit">
@@ -70,5 +70,20 @@ export default {
 </script>
 
 <style>
+.book-form {
+    display: flex;
+    padding: 15px;
+    border: 0.8px solid rgb(220, 227, 235);
+    border-radius: 24px;
+    margin-top: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
 
+.inputs {
+    width: 100%;
+}
 </style>

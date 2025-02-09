@@ -58,6 +58,9 @@ export default {
 }
 
 .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: sticky;
   top: 0px; /* для связки с статическим нахождением данного элемента*/
   background-color: white; /* для сокрытия содержимого под формой */

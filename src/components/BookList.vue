@@ -121,6 +121,7 @@ import axios from '@/plugins/axios';
   display: flex;
   flex-direction: column;
   text-align: left;
+  align-items: flex-start;
 }
 
 .book-p {
