@@ -1,11 +1,15 @@
 <template>
   <div id="app">
-    <h1>Библиотека</h1>
-    <BookList @edit-book="editBook"/>
-    <BookForm
-      :initialBook="editingBook"
-      @book-submitted="bookSubmitted"
-      @cancel="cancelEdit"/>
+    <div class="form">
+      <h1>Библиотека</h1>
+      <BookForm 
+        :initialBook="editingBook"
+        @book-submitted="bookSubmitted"
+        @cancel="cancelEdit"/>  
+    </div>
+  
+    <BookList ref="bookList" @edit-book="editBook"/>
+
   </div>
 </template>
 
@@ -31,7 +35,7 @@ export default {
     },
     bookSubmitted() {
       this.editingBook = {};
-      this.$children[0].fetchBooks(); // обновляем список книг
+      this.$refs.bookList.fetchBooks(); // обновляем список книг
     },
     cancelEdit() {
       this.editingBook = {}; // очищаем editingBook
@@ -51,6 +55,15 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.form {
+  position: sticky;
+  top: 20px; /* для связки с статическим нахождением данного элемента*/
+  background-color: white; /* для сокрытия содержимого под формой */
+  z-index: 10; /* для определния порядка наложения элементов (чем выше, тем больше перекрывает) */
+  padding: 10px;
+  border-bottom: 1px solid #ccc; /* для отделения формы от списка элементов */
 }
 
 /* Стили на UI компонентов */

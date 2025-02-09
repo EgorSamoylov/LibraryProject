@@ -5,8 +5,11 @@
       <input class="input" type="text" v-model="searchTitle" placeholder="Поиск по названию">
       <input class="input" type="text" v-model="searchAuthor" placeholder="Поиск по автору">
     </div>
-    <div v-if="loading"></div>
+    <div v-if="loading">
+      <strong>Загрузка....</strong>
+    </div>
     <div v-else>
+      <div v-if="filteredBooks.length == 0">Ничего не найдено</div>
       <div class="book-List" v-for="book in filteredBooks" :key="book.id">
         <div class="book-item">
           <div class="book-content">
@@ -34,11 +37,7 @@ import axios from '@/plugins/axios';
   export default {
     data() {
       return {
-        books: [
-          {id: 1, title: "Book title 1", author: "Book author 1", publishedYear: 1997, borrowed: true},
-          {id: 2, title: "Book title 2", author: "Book author 2", publishedYear: 1999, borrowed: false},
-          {id: 3, title: "Book title 3", author: "Book author 3", publishedYear: 1990, borrowed: true},
-        ],
+        books: [],
         searchTitle: '',
         searchAuthor: '',
         loading: false
