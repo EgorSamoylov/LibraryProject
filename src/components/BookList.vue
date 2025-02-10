@@ -11,21 +11,11 @@
     <div v-else>
       <div v-if="filteredBooks.length == 0">Ничего не найдено</div>
       <div class="book-List" v-for="book in filteredBooks" :key="book.id">
-        <div class="book-item">
-          <div class="book-content">
-            <strong>{{ book.id }}. {{ book.title }}</strong>
-            <div class="book-p">
-              Автор: {{ book.author }}. <br/>
-              Год: {{ book.publishedYear }} <br/>
-              Статус: {{ book.borrowed }}
-            </div>
-          </div>
-          <div class="book-buttons">
-            <button class="btn" @click="editBook(book)">Редактировать</button>
-            <button class="btn" @click="deleteBook(book.id)">Удалить</button>
-            <button class="btn" @click="toggleBorrowStatus(book)">{{ book.borrowed ? 'Вернуть' : 'Взять' }}</button>
-          </div>
-        </div>
+        <BookItem 
+          :book="book"
+          @editBook="editBook"
+          @deleteBook="deleteBook"
+          @toggleBorrowStatus="toggleBorrowStatus"/>
       </div>
     </div>
   </div>
@@ -33,8 +23,12 @@
 
 <script>
 import axios from '@/plugins/axios';
+import BookItem from './BookItem.vue';
 
   export default {
+    components: {
+      BookItem
+    },
     data() {
       return {
         books: [],
@@ -100,34 +94,6 @@ import axios from '@/plugins/axios';
   align-items: center;
   width: 100%;
 
-}
-
-.book-item {
-    display: flex;
-    padding: 15px;
-    border: 0.8px solid rgb(220, 227, 235);
-    border-radius: 24px;
-    margin-top: 15px;
-    justify-content: space-between;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 50%;
-}
-
-.book-item:hover {
-  border: 0.8px solid rgb(42, 49, 55);
-}
-
-.book-content {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  align-items: flex-start;
-}
-
-.book-p {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .book-buttons {
